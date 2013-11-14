@@ -1,0 +1,24 @@
+Loderunner Cycle 1 plans:
+
+Team # 06         Members: Jiayu Guo, Zhihao Xue, Lijing Peng
+
+USER STORIES:
+ 1. User presses left/right keys, hero moves left/right on ground or rope
+ 2. User presses up/down, hero moves up/down a ladder 
+ 3. Build the game frame
+ 
+List the user stories that you plan to implement in cycle 1:
+
+    First level is built on the screen the game frame implemented through I/O and text files
+	User presses left/right keys, hero moves left/right
+	User presses up/down, hero moves up/down
+
+RESEARCH:
+What information/techniques does your team need to research, and who is assigned to investigate what?
+
+1. KeyListener
+2. Input/Output Files
+3. Start new game by pressing any key
+
+MISC:
+Describe any other aspects of your plans for cycle 1.

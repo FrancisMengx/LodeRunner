@@ -1,0 +1,56 @@
+Loderunner Cycle 3 report and Cycle 4 plans:
+
+Team #    06      Members: Jiayu Guo, Zhihao Xue, Lijing Peng
+
+
+CYCLE 3 REPORT:
+
+Which user stories did your team successfully implement and test?
+ 7. User presses z/x keys digs out bricks to left/right of hero, or does nothing if no brick present
+ 8. User encounters hole, falls through to next floor
+ 9. Guard walks over hole dug by player, falls in
+14. Hero is followed by guards who attempt to get to him
+
+
+
+Which stories were in your plans, but did not get done?  Describe the state of each.
+
+10. Hero can walk over guards in holes
+11. After a period of time, guards exit holes
+12. Bricks respawn after a period of time guards exit holes
+15. Hero walks into guard, dies, game ends and restart
+
+We failed at story10, then we think we need to redesign our milestones and code refactor. 
+If we can fix that problem (story10), we will finish story11,12 easily.
+  
+What research experiments did your team do as you learn about technologies?
+
+How to implement multi-threading  in java.
+
+
+Briefly describe the main contributions of each team member during Cycle 3.
+Jiayu Guo did story 7
+Zhihao Xue did 8
+Lijing Peng did 9 and 14
+
+CYCLE 4 PLANS:
+
+
+USER STORIES:
+
+List the user stories that you plan to implement in Cycle 4:
+16. Hero walks over gold, picks it up and adds it to his score
+17. Guard crosses gold, has chance to pick up
+18. Guard w/ gold falls into hole, drops gold above himself
+19. Hero grabs last gold, exit ladder appears
+20. User presses U/D/S, goes up or down a level or saves current level
+
+
+RESEARCH:   
+What information/techniques does your team need to research, and who is assigned to investigate what?
+
+think about the method of guards chase hero.
+Do research on timer to implement story11.  
+
+MISC:
+Describe any other aspects of your plans for cycle 4.

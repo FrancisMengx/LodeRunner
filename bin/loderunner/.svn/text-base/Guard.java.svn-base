@@ -1,0 +1,32 @@
+package loderunner;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+public class Guard extends Moveable implements Block{
+	
+	public void drawRec(Graphics2D g) {
+		Rectangle guard = new Rectangle(this.x,this.y,25,25);
+		g.setColor(Color.BLACK);
+		g.fill(guard);
+		g.draw(guard);	
+	}
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "g";
+	}
+
+	@Override
+	public boolean isDigable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void drawRec(Graphics2D g, int x, int y) {
+		//overloaded do nothing
+	}
+
+}

@@ -1,0 +1,27 @@
+   10/29/2013
+   Jiayu Guo, Zhihao Xue, Lijing Peng
+ 1. User presses left/right keys, hero moves left/right on ground or rope
+ 2. User presses up/down, hero moves up/down a ladder 
+ 3. Build the game frame
+ .
+ 4. Hero encounters rope, grabs rope
+ 5. Hero walks off a ledge or rope edge, falls straight down
+ 6. User presses down while hero is on rope, hero falls straight down
+
+ 7. User presses z/x keys digs out bricks to left/right of hero, or does nothing if no brick present
+ 8. User encounters hole, falls through to next floor
+ 9. Guard walks over hole dug by player, falls in
+10. Hero can walk over guards in holes
+11. After a period of time, guards exit holes
+12. Bricks re-spawn after a period of time guards exit holes
+13. Hero encounters wall, cannot move through it
+14. Hero is followed by guards who attempt to get to him
+15. Hero walks into guard, dies, game ends and restart
+
+16. Hero walks over gold, picks it up and adds it to his score
+17. Guard crosses gold, has chance to pick up
+18. Guard w/ gold falls into hole, drops gold above himself
+19. Hero grabs last gold, exit ladder appears
+
+20. User presses U/D/S, goes up or down a level or saves current level
+21. Hero moves faster than guards

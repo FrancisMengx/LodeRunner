@@ -1,0 +1,51 @@
+Loderunner Cycle 1 report and Cycle 2 plans:
+
+Team #  6       Members: Jiayu Guo, Lijing Peng, Zhihao Xue
+
+
+CYCLE 1 REPORT:
+
+Which user stories did your team successfully implement and test?
+
+ 1. User presses left/right keys, hero moves left/right on ground or rope
+ 2. User presses up/down, hero moves up/down a ladder 
+ 3. Build the game frame
+
+Which stories were in your plans, but did not get done?  Describe the state of each.
+
+N/A
+
+
+What research experiments did your team do as you learn about technologies?
+
+how to load and display images.
+
+
+Briefly describe the main contributions of each team member during Cycle 1.
+
+study and program together
+
+CYCLE 2 PLANS:
+
+
+USER STORIES:
+
+List the user stories that you plan to implement in Cycle 2:
+
+ 4. Hero encounters rope, grabs rope
+ 5. Hero walks off a ledge or rope edge, falls straight down
+ 6. User presses down while hero is on rope, hero falls straight down
+ 7. Hero encounters wall, cannot move through it
+
+
+RESEARCH:   
+What information/techniques does your team need to research, and who is assigned to investigate what?
+
+
+
+
+
+
+
+MISC:
+Describe any other aspects of your plans for cycle 2.

@@ -1,0 +1,30 @@
+package loderunner;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+public class Hole implements Block{
+	public boolean isFilled = false;
+	@Override
+	public void drawRec(Graphics2D g, int x, int y) {
+		Rectangle air = new Rectangle(x,y, 25,25);
+		g.setColor(Color.GREEN);
+		g.fill(air);
+		g.draw(air);
+
+		
+	}
+
+	@Override
+	public String getType() {
+		return "a";
+	}
+
+	@Override
+	public boolean isDigable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

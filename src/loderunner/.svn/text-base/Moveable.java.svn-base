@@ -1,0 +1,47 @@
+package loderunner;
+
+public abstract class Moveable {
+	public String direction;
+	public int x;
+	public int y;
+	public void move(){
+//		System.out.println(this.getCurrentBlockType());
+		if(this.getBlowBlockType()!= 'b' && this.getCurrentBlockType() == 'k'){
+			if(this.getBlowBlockType() != 'l' ){
+						this.y += 8;
+			}
+			
+		}
+		if(this.direction == "left" && !(Game.currentLevel[this.x/25-1][this.y/25] == 'b'&& this.getBlowBlockType() == 'b')){
+			this.x -= 5;
+//			System.out.println(this.x);
+		}
+		if(this.direction == "right"&& !(Game.currentLevel[this.x/25+1][this.y/25] == 'b'&& this.getBlowBlockType() == 'b')){
+			this.x += 5;
+//			System.out.println(this.x);
+		}
+		if(this.direction == "up" & (this.getCurrentBlockType() == 'l'|this.getBlowBlockType() == 'l')){
+			this.y -= 5;
+//			System.out.println(this.x);
+		}
+		if(this.direction == "down"&(this.getCurrentBlockType() == 'l' | this.getCurrentBlockType() == 'r'|this.getBlowBlockType() == 'l')){
+			this.y += 5;
+//			System.out.println(this.x);
+		}
+
+	}
+	
+	public char getCurrentBlockType() {
+		return Game.currentLevel[this.x/25][this.y/25];
+	}
+	
+	public char getBlowBlockType() {
+		return Game.currentLevel[this.x/25][this.y/25+1];
+	}
+	
+	public void setPosition(int x ,int y){
+		this.x = x;
+		this.y = y;
+	}
+	
+}

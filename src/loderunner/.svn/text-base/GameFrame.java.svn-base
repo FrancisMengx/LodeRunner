@@ -1,0 +1,25 @@
+package loderunner;
+
+import java.io.FileNotFoundException;
+
+import javax.swing.JFrame;
+
+public class GameFrame extends JFrame{
+	public static final int WIDTH = 1020;
+	public static final int HEIGHT = 795;
+	public GameFrame() throws FileNotFoundException{
+		this.setSize(WIDTH, HEIGHT);
+		this.setTitle("Load Runner");
+		Game game = new Game();
+		Hero hero = game.getHero();
+		Guard guard = game.getGuards();
+		GameComponent gcomp = new GameComponent(hero,guard,game);
+		this.add(gcomp);
+		this.addKeyListener(new LodeKeyListener(hero ,this, game));
+		Thread t1 = new Thread(gcomp);
+		t1.start();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+	
+}

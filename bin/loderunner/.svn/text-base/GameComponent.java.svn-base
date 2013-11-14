@@ -1,0 +1,81 @@
+package loderunner;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.io.FileNotFoundException;
+
+import javax.swing.JComponent;
+
+public class GameComponent extends JComponent implements Runnable {
+	public static final int UPDATE_INTERVAL_MS = 50;
+	public Game game;
+	public Guard guard;
+	public Hero hero;
+	Graphics2D g2;
+	
+	public GameComponent(Hero hero, Guard guard, Game game){
+		this.game = game;
+		this.hero = hero;
+		this.guard = guard;
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		g2 = (Graphics2D) g;
+		game.loadLevel(g2);
+		this.hero.drawRec(g2);
+		this.guard.drawRec(g2);
+
+	}
+	
+
+	@Override
+	public void run() {
+		GuardThread gt = new GuardThread(this.guard);
+		gt.start();
+			while(true){
+//				System.out.println("runnings");
+//				System.out.println(this.hero.direction);
+				this.hero.move();
+				this.repaint();
+				try {
+					Thread.sleep(UPDATE_INTERVAL_MS);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+	}
+	class GuardThread extends Thread{
+		private Guard guard;
+		public GuardThread(Guard g){
+			this.guard = g;
+		}
+		 @Override
+		 public void run(){
+		      while(true){
+		    	  if(this.guard.x > hero.x){
+		    		  this.guard.direction = "left";
+		    		  this.guard.move();
+		    		  
+		    	  }else if(this.guard.x < hero.x){
+		    		  this.guard.direction = "right";
+		    		  this.guard.move();
+		    	  }
+		    	  
+		    	  repaint();
+		    	  try {
+						Thread.sleep(UPDATE_INTERVAL_MS);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		      }
+		   }
+	}
+	
+
+}

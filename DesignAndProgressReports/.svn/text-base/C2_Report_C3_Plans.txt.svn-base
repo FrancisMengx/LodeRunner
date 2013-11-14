@@ -1,0 +1,62 @@
+Loderunner Cycle 2 report and Cycle 3 plans:
+
+Team #    06      Members: Jiayu Guo, Zhihao Xue, Lijing Peng
+
+
+CYCLE 2 REPORT:
+
+Which user stories did your team successfully implement and test?
+
+ 4. Hero encounters rope, grabs rope
+ 5. Hero walks off a ledge or rope edge, falls straight down
+ 6. User presses down while hero is on rope, hero falls straight down
+ 7. Hero encounters wall, cannot move through it
+
+
+Which stories were in your plans, but did not get done?  Describe the state of each.
+
+N/A
+
+
+What research experiments did your team do as you learn about technologies?
+
+No research for  plan2.
+
+
+Briefly describe the main contributions of each team member during Cycle 2.
+
+Jiayu changed the background from image to graphic drawing.
+Jiayu finished stories 4 and 5
+Lijing finished stories 6
+Zhihao finished stories 7
+
+CYCLE 3 PLANS:
+
+
+USER STORIES:
+
+List the user stories that you plan to implement in Cycle 3:
+
+ 7. User presses z/x keys digs out bricks to left/right of hero, or does nothing if no brick present
+ 8. User encounters hole, falls through to next floor
+ 9. Guard walks over hole dug by player, falls in
+10. Hero can walk over guards in holes
+11. After a period of time, guards exit holes
+12. Bricks respawn after a period of time guards exit holes
+14. Hero is followed by guards who attempt to get to him
+15. Hero walks into guard, dies, game ends and restart
+
+
+
+RESEARCH:   
+What information/techniques does your team need to research, and who is assigned to investigate what?
+
+
+Adding guards to game may need another threading.
+
+
+
+
+MISC:
+Describe any other aspects of your plans for cycle 3.
+N/A
