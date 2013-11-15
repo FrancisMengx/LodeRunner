@@ -13,6 +13,7 @@ public class GameComponent extends JComponent implements Runnable {
 	public ArrayList<Guard> guards;
 	public int lives = 1;
 	public Hero hero;
+	
 
 	public GameFrame gameFrame;
 	Graphics2D g2;
@@ -29,7 +30,9 @@ public class GameComponent extends JComponent implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2 = (Graphics2D) g;
-		
+		if(this.hero.y/25 == 0){
+			this.changeLevel('u');
+		}
 		game.loadLevel(g2);
 		for(Guard guard : this.guards){
 		if(Math.abs(this.hero.x - guard.x) < 10 && Math.abs(this.hero.y - guard.y) < 10){
@@ -37,20 +40,15 @@ public class GameComponent extends JComponent implements Runnable {
 		}
 		}
 		if(this.hero.isDead){
-			for(Guard guard : this.guards){
-				guard.isDead = true;
-			}
-			try {
-				this.game.reload();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				this.game = new Game(this.game.level);
 		}
 		this.hero.drawRec(g2);
 		for(int j = 0 ;j<this.guards.size();j++){
 			this.guards.get(j).drawRec(g2);
 			if(this.guards.get(j).isDead){
+				if(this.guards.get(j).hasGold){
+					this.game.currentLevel[this.guards.get(j).x/25][this.guards.get(j).y/25-1] = 'm';
+				}
 				int x = this.guards.get(j).oriX;
 				int y = this.guards.get(j).oriY;
 				Guard newguard = new Guard(this.game);
@@ -72,16 +70,14 @@ public class GameComponent extends JComponent implements Runnable {
 	
 	
 	
-	public void changeLevel(char key) throws FileNotFoundException{
+	public void changeLevel(char key){
 		int level = this.game.level;
 		if(key == 'u'){
 			this.game = new Game(level+1);
 		}else{	
 			this.game = new Game(level-1);
 		}
-		this.hero = game.getHero();
-		this.guards = game.getGuards();
-		this.gameFrame.addKeyListener(new LodeKeyListener(this.gameFrame, game, this));
+		this.hero.isDead = true;
 	}
 	
 	
@@ -92,31 +88,35 @@ public class GameComponent extends JComponent implements Runnable {
 	public void run() {
 		GuardThread gt1 = new GuardThread();
 		gt1.start();
-			while(true){
+		while(true){
 				this.hero.move();
 				this.hero.die();
-				repaint();
 				try {
 					Thread.sleep(UPDATE_INTERVAL_MS);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-
+			
+		}
 	}
 	class GuardThread extends Thread{
 		 @Override
 		 public void run(){
-		      while(true){
-		    	  chase();
+			 while(true){
+		    	  while(!game.isRunning){
+		    		  int a=1;
+		    	  }
+		    		  chase();
+		    		  repaint();
 		    	  try {
 						Thread.sleep(UPDATE_INTERVAL_MS);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		      }
+		    	  }
+		 
 		   }
 		 
 		 private void chase(){

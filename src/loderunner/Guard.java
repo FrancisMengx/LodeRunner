@@ -3,19 +3,29 @@ package loderunner;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Guard extends Moveable implements Block{
 
 	public int counter = 0;
-	
+	public boolean hasGold = false;
 	public Guard(Game game) {
 		super(game);
 	}
 	public void drawRec(Graphics2D g) {
-		Rectangle guard = new Rectangle(this.x,this.y,25,25);
-		g.setColor(Color.BLACK);
-		g.fill(guard);
+		BufferedImage image;
+		try {
+			image = ImageIO.read(new File("src/Monster.gif"));
+			g.drawImage(image, null, x, y);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(this.getBlockType("current") == 'f'){
 			this.counter++;
 		}
@@ -23,7 +33,9 @@ public class Guard extends Moveable implements Block{
 			this.getOut();
 			this.counter = 0;
 		}
-		g.draw(guard);	
+		if(this.getBlockType("current") == 'm' && Math.abs(this.x - (this.x/25)*25)<5 ){
+			this.pickUpGold();
+		}
 		
 	}
 	@Override
@@ -81,5 +93,12 @@ public class Guard extends Moveable implements Block{
 			}
 		}
 		return min;
+	}
+	@Override
+	public void pickUpGold() {
+		if(Math.random()>= 0.3 && !this.hasGold){
+			this.game.currentLevel[this.x/25][this.y/25] = 'k';
+			this.hasGold = true;
+		}
 	}
 }

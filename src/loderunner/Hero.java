@@ -15,6 +15,7 @@ public class Hero extends Moveable implements Block{
 	private Graphics2D g;
 	int interval = 3;
 	Timer timer;
+	public int goldCount = 0;
 	
 	public Hero(Game game) {
 		super(game);
@@ -36,6 +37,9 @@ public class Hero extends Moveable implements Block{
 
 		} catch (IOException e) {
 			// do nothing
+		}
+		if(this.getBlockType("current") == 'm' && Math.abs(this.x - (this.x/25)*25)<5 ){
+			this.pickUpGold();
 		}
 	}
 
@@ -62,17 +66,22 @@ public class Hero extends Moveable implements Block{
 	
 	public void dig(String direction){
 		if(direction == "left"){
-			game.currentLevel[this.x/25-1][this.y/25+1] = 'a';
-			Hole newhole = new Hole(game);
-			newhole.setPosition((this.x/25-1)*25, (this.y/25+1)*25);
-			game.holes[this.x/25-1][this.y/25+1] = newhole;
+			if(game.currentLevel[this.x/25-1][this.y/25+1] == 'b'){
+				game.currentLevel[this.x/25-1][this.y/25+1] = 'a';
+				Hole newhole = new Hole(game);
+				newhole.setPosition((this.x/25-1)*25, (this.y/25+1)*25);
+				game.holes[this.x/25-1][this.y/25+1] = newhole;
+			}
 		}
 
 		if(direction == "right"){
-			game.currentLevel[this.x/25+1][this.y/25+1] = 'a';
-			Hole newhole = new Hole(game);
-			newhole.setPosition((this.x/25+1)*25, (this.y/25+1)*25);
-			game.holes[this.x/25+1][this.y/25+1] = newhole;
+			if(game.currentLevel[this.x/25+1][this.y/25+1] == 'b'){
+				game.currentLevel[this.x/25+1][this.y/25+1] = 'a';
+				Hole newhole = new Hole(game);
+				newhole.setPosition((this.x/25+1)*25, (this.y/25+1)*25);
+				game.holes[this.x/25+1][this.y/25+1] = newhole;
+			}
+			
 		}
 	}
 	
@@ -81,6 +90,11 @@ public class Hero extends Moveable implements Block{
 		if(this.getBlockType("current") == 'b'){
 			this.isDead = true;
 		}
+	}
+	@Override
+	public void pickUpGold() {
+			this.game.currentLevel[this.x/25][this.y/25] = 'k';
+			this.goldCount++;
 	}
 
 	

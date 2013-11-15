@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 public class GameFrame extends JFrame{
 	public static final int WIDTH = 1020;
 	public static final int HEIGHT = 795;
+	public Thread t1;
 	public GameFrame() throws FileNotFoundException{
 		this.setSize(WIDTH, HEIGHT);
 		this.setTitle("Load Runner");
@@ -20,7 +21,7 @@ public class GameFrame extends JFrame{
 		this.add(gcomp);
 		this.addKeyListener(new LodeKeyListener(this, game, gcomp));
 //		gcomp.run();
-		Thread t1 = new Thread(gcomp);
+		t1 = new Thread(gcomp);
 		t1.start();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

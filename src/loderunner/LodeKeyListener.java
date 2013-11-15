@@ -38,20 +38,16 @@ public class LodeKeyListener implements KeyListener{
 			this.hero.dig("right");
 			break;
 		case KeyEvent.VK_U:
-			try {
-				this.comp.changeLevel('u');
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				this.comp.changeLevel('u');		
 			break;
 		case KeyEvent.VK_D:
-			try {
 				this.comp.changeLevel('d');
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			break;
+		case KeyEvent.VK_R:
+			this.game.isRunning = true;
+			break;
+		case KeyEvent.VK_P:
+				this.game.isRunning = false;
 			break;
 		}
 		
