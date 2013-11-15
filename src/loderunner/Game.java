@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-	public String file = "src/level1";
+	public String file = "src/level";
 	public static char currentLevel[][] = new char[40][30];
 	public static Block currentLevelBlocks[][] = new Block[40][30];
 	public Hero newHero = null;
+	public int level;
 	public ArrayList<Guard> newGuard = new ArrayList<Guard>();
 	
-	public Game() throws FileNotFoundException{
-		Scanner scan = new Scanner(new File(file));
+	public Game(int level) throws FileNotFoundException{
+		Scanner scan = new Scanner(new File(file+level));
+		this.level = level;
 		int lineNo = 0;
 		while(scan.hasNext()){
 			String line = scan.next();
@@ -89,6 +91,18 @@ public class Game {
 			}
 		}
 		return this.newGuard;
+	}
+	public void reload() throws FileNotFoundException{
+		Scanner scan = new Scanner(new File(file+level));
+		this.level = level;
+		int lineNo = 0;
+		while(scan.hasNext()){
+			String line = scan.next();
+			for(int i = 0; i < line.length(); i++){
+				this.currentLevel[i][lineNo] = line.charAt(i);
+			}
+			lineNo++;
+		}
 	}
 }
 	

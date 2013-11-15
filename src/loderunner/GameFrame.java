@@ -15,28 +15,14 @@ public class GameFrame extends JFrame{
 	public GameFrame() throws FileNotFoundException{
 		this.setSize(WIDTH, HEIGHT);
 		this.setTitle("Load Runner");
-		Game game = new Game();
+		Game game = new Game(1);
 		GameComponent gcomp = new GameComponent(game, this);
 		this.add(gcomp);
-		this.addKeyListener(new LodeKeyListener(this, game));
+		this.addKeyListener(new LodeKeyListener(this, game, gcomp));
 //		gcomp.run();
 		Thread t1 = new Thread(gcomp);
 		t1.start();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-	
-	public void displayGameover(){
-		final JFrame frame = new JFrame();
-
-		frame.setSize(300, 200);
-		frame.setTitle("Game Over");
-		JLabel newlabel = new JLabel("Game Over");
-		newlabel.setSize(100, 100);
-		frame.add(newlabel);
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
-	
 }

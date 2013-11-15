@@ -71,7 +71,8 @@ public class Hero extends Moveable implements Block{
 		if(direction == "right"){
 			game.currentLevel[this.x/25+1][this.y/25+1] = 'a';
 			Hole newhole = new Hole();
-			newhole.setPosition((this.x/25+1)*25, (this.y/25+1));
+			newhole.setPosition((this.x/25+1)*25, (this.y/25+1)*25);
+			newhole.index = this.holes.size();
 			this.holes.add(newhole);
 		}
 	}

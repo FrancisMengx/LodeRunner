@@ -2,6 +2,7 @@ package loderunner;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -22,22 +23,30 @@ public class GameComponent extends JComponent implements Runnable {
 		this.guards = game.getGuards();
 		this.gameFrame = gameFrame;
 	}
+	
+	public void changeLevel(char key) throws FileNotFoundException{
+		int level = this.game.level;
+		if(key == 'u'){
+			this.game = new Game(level+1);
+		}else{	
+			this.game = new Game(level-1);
+		}
+		this.hero = game.getHero();
+		this.guards = game.getGuards();
+		this.gameFrame.addKeyListener(new LodeKeyListener(this.gameFrame, game, this));
+	}
+	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2 = (Graphics2D) g;
-		
-		if(this.hero.holes.size()>0){
-			for(int i = 0; i< this.hero.holes.size(); i++){
-				this.hero.holes.get(i).drawRec(g2);
 				for(Guard guard: this.guards){
-					if(this.hero.holes.get(i) instanceof FilledHole && guard.getBlockType("current") == 'f'){
+					if(guard.getBlockType("current") == 'f'){
 						guard.counter++;
 					}		
 				}
-			}
-		}
 		
 		game.loadLevel(g2);
 		for(Guard guard : this.guards){
@@ -49,16 +58,22 @@ public class GameComponent extends JComponent implements Runnable {
 			for(Guard guard : this.guards){
 				guard.isDead = true;
 			}
+			try {
+				this.game.reload();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		this.hero.drawRec(g2);
-		for(int i = 0 ;i<this.guards.size();i++){
-			this.guards.get(i).drawRec(g2);
-			if(this.guards.get(i).isDead){
-				int x = this.guards.get(i).oriX;
-				int y = this.guards.get(i).oriY;
+		for(int j = 0 ;j<this.guards.size();j++){
+			this.guards.get(j).drawRec(g2);
+			if(this.guards.get(j).isDead){
+				int x = this.guards.get(j).oriX;
+				int y = this.guards.get(j).oriY;
 				Guard newguard = new Guard();
 				newguard.setPosition(x, y);
-				this.guards.set(i, newguard);
+				this.guards.set(j, newguard);
 			}
 		}
 		

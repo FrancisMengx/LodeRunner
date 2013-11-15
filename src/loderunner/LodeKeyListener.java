@@ -2,13 +2,16 @@ package loderunner;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 public class LodeKeyListener implements KeyListener{
 	public static Hero hero;
 	public GameFrame frame;
+	public GameComponent comp;
 	private Game game;
-	public LodeKeyListener(GameFrame frame, Game game){
+	public LodeKeyListener(GameFrame frame, Game game, GameComponent comp){
 		this.hero = game.getHero();
+		this.comp = comp;
 		this.frame = frame;
 		this.game = game;
 	}
@@ -33,6 +36,22 @@ public class LodeKeyListener implements KeyListener{
 			break;
 		case KeyEvent.VK_X:
 			this.hero.dig("right", game);
+			break;
+		case KeyEvent.VK_U:
+			try {
+				this.comp.changeLevel('u');
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_D:
+			try {
+				this.comp.changeLevel('d');
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		}
 		
