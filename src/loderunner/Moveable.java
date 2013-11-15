@@ -11,6 +11,7 @@ public abstract class Moveable {
 	public int y;
 	public boolean isFilling = false;
 	public boolean isDead = false;
+	public int speed = 1;
 
 	public Moveable(Game game) {
 		this.game = game;
@@ -34,6 +35,8 @@ public abstract class Moveable {
 					(this.x / 25) * 25, (this.y / 25) * 25);
 
 		}
+		
+		this.checkSuperSpeed();
 		if(!(this.getBlockType("current") == 'a'|this.getBlockType("current") == 'f')|this instanceof Hero){
 			this.checkAndDrop();
 		}
@@ -52,6 +55,13 @@ public abstract class Moveable {
 		}
 	}
 
+	private void checkSuperSpeed(){
+		if(this.getBlockType("current") == 'u' && this instanceof Hero){
+			game.currentLevel[this.x/25][this.y/25] = 'k';
+			this.speed = 3;
+		}
+	}
+	
 	private void checkAndDrop() {
 		if (this.getBlockType("current") != 'r'
 				&& (this.getBlockType("below") == 'k' | this
@@ -81,14 +91,14 @@ public abstract class Moveable {
 			if (this.getBlockType("left") != 'b'
 					&& this.getBlockType("left") != 's'
 					&& this.getBlockType("left") != 'a') {
-				this.x -= 1;
+				this.x -= this.speed;
 			}
 		}
 		if ((this.direction == "right")) {
 			if (this.getBlockType("right") != 'b'
 					&& this.getBlockType("right") != 's'
 					&& this.getBlockType("right") != 'a') {
-				this.x += 1;
+				this.x += this.speed;
 			}
 		}
 	}
@@ -97,17 +107,17 @@ public abstract class Moveable {
 		if (this.direction == "up") {
 			if (this.getBlockType("current") == 'l') {
 				if (Math.abs(this.x - (this.x / 25) * 25) < 12) {
-					this.y -= 1;
+					this.y -= this.speed;
 				}
 
 			}else if (this.getBlockType("current") == 'k'
 					&& this.getBlockType("below") == 'l') {
-				this.y -= 1;
+				this.y -= this.speed;
 			}
 		}
 		if (this.direction == "down") {
 			if (this.getBlockType("below") == 'l') {
-				this.y += 1;
+				this.y += this.speed;
 			}
 		}
 	}
@@ -126,7 +136,7 @@ public abstract class Moveable {
 			return Game.currentLevel[this.x / 25 + 1][this.y / 25];
 
 	}
-
+	
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.oriX = x;

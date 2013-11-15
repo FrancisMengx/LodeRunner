@@ -62,7 +62,12 @@ public class Game {
 					this.goldCount++;
 					Gold newGold = new Gold();
 					newGold.drawRec(g, i * 25, j * 25);
-				} else if (this.currentLevel[i][j] == 's') {
+				}else if (this.currentLevel[i][j] == 'u') {
+					this.goldCount++;
+					SuperSpeed sp = new SuperSpeed();
+					sp.drawRec(g, i * 25, j * 25);
+				}  
+				else if (this.currentLevel[i][j] == 's') {
 					Board newBoard = new Board();
 					newBoard.drawRec(g, i * 25, j * 25);
 				} else if (this.currentLevel[i][j] == 'a') {
@@ -84,12 +89,10 @@ public class Game {
 		
 		if(this.goldCount == 0){
 			for(int k = 0; k<28;k++){
-				if(this.level == 2){
-					this.newHero.win();
-				}else{
 					this.currentLevel[38][k] = 'l';
-				}
-				
+					if(this.level == 2){
+						this.isRunning =false;
+					}
 			}
 		}
 	}

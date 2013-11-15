@@ -102,10 +102,6 @@ public class Hero extends Moveable implements Block{
 			this.goldCount++;
 	}
 	
-	public void win(){
-		this.game.isRunning = false;
-		this.game = new Game(3);
-	}
 
 	
 }
