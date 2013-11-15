@@ -1,13 +1,18 @@
 package loderunner;
 
+import java.awt.AWTException;
 import java.awt.Graphics2D;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Timer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 
@@ -95,6 +100,11 @@ public class Hero extends Moveable implements Block{
 	public void pickUpGold() {
 			this.game.currentLevel[this.x/25][this.y/25] = 'k';
 			this.goldCount++;
+	}
+	
+	public void win(){
+		this.game.isRunning = false;
+		this.game = new Game(3);
 	}
 
 	

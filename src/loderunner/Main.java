@@ -48,22 +48,19 @@ public class Main {
 		});
 		JButton helpGame = new JButton("Help Menu");
 		helpGame.setPreferredSize(new Dimension(150, 40));
-//		helpGame.addActionListener(new ActionListener(){
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				JFrame frame;
-//				try {
-//					frame = new HelpFrame();
-//					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//					frame.setVisible(true);
-//				} catch (FileNotFoundException e1) {
-//					e1.printStackTrace();
-//				}
-//				
-//			}
-//			
-//		});
+		helpGame.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame;
+					frame = new HelpFrame();
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
+			
+				
+			}
+			
+		});
 		panel.add(newGame);
 		panel.add(helpGame);
 		frame.setContentPane(panel);

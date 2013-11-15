@@ -1,13 +1,12 @@
 package loderunner;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class GameFrame extends JFrame{
 	public static final int WIDTH = 1020;
@@ -16,6 +15,7 @@ public class GameFrame extends JFrame{
 	public GameFrame() throws FileNotFoundException{
 		this.setSize(WIDTH, HEIGHT);
 		this.setTitle("Load Runner");
+		
 		Game game = new Game(1);
 		GameComponent gcomp = new GameComponent(game, this);
 		this.add(gcomp);

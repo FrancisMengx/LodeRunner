@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class Game {
 	public String file = "src/level";
 	public static char currentLevel[][] = new char[40][30];
@@ -77,9 +81,15 @@ public class Game {
 			}
 		}
 		System.out.println(this.goldCount);
+		
 		if(this.goldCount == 0){
 			for(int k = 0; k<28;k++){
-				this.currentLevel[38][k] = 'l';
+				if(this.level == 2){
+					this.newHero.win();
+				}else{
+					this.currentLevel[38][k] = 'l';
+				}
+				
 			}
 		}
 	}
