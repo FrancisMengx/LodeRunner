@@ -8,8 +8,13 @@ public class Hole implements Block{
 	public boolean isFilled = false;
 	public int x;
 	public int y;
+	public Game game;
 	public int counter = 0;
 	public int index;
+	public Hole(Game game){
+		this.game = game;
+
+	}
 	
 	public void drawRec(Graphics2D g){
 		
@@ -17,11 +22,9 @@ public class Hole implements Block{
 		g.setColor(Color.GREEN);
 		g.fill(air);
 		g.draw(air);
-		
-		System.out.println(counter);
 		if(counter == 300){
 			Game.currentLevel[this.x/25][this.y/25] = 'b';
-			Hero.holes.remove(this.index);
+			game.holes[this.x/25][this.x/25] = null;
 			counter =0;
 		}
 		this.counter++;

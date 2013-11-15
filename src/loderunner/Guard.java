@@ -6,13 +6,22 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Guard extends Moveable implements Block{
+
 	public int counter = 0;
+	
+	public Guard(Game game) {
+		super(game);
+	}
 	public void drawRec(Graphics2D g) {
 		Rectangle guard = new Rectangle(this.x,this.y,25,25);
 		g.setColor(Color.BLACK);
 		g.fill(guard);
+		if(this.getBlockType("current") == 'f'){
+			this.counter++;
+		}
 		if(this.counter == 220){
 			this.getOut();
+			this.counter = 0;
 		}
 		g.draw(guard);	
 		
@@ -34,7 +43,7 @@ public class Guard extends Moveable implements Block{
 		//overloaded do nothing
 	}
 	public void getOut(){
-		Game.currentLevel[this.x][this.y] = 'a';
+		Game.currentLevel[this.x/25][this.y/25] = 'b';
 		if(this.direction == "left"){
 			this.x = this.x-25;
 			this.y = this.y -25;

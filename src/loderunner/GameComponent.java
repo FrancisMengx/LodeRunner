@@ -24,29 +24,11 @@ public class GameComponent extends JComponent implements Runnable {
 		this.gameFrame = gameFrame;
 	}
 	
-	public void changeLevel(char key) throws FileNotFoundException{
-		int level = this.game.level;
-		if(key == 'u'){
-			this.game = new Game(level+1);
-		}else{	
-			this.game = new Game(level-1);
-		}
-		this.hero = game.getHero();
-		this.guards = game.getGuards();
-		this.gameFrame.addKeyListener(new LodeKeyListener(this.gameFrame, game, this));
-	}
-	
-	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2 = (Graphics2D) g;
-				for(Guard guard: this.guards){
-					if(guard.getBlockType("current") == 'f'){
-						guard.counter++;
-					}		
-				}
 		
 		game.loadLevel(g2);
 		for(Guard guard : this.guards){
@@ -71,7 +53,7 @@ public class GameComponent extends JComponent implements Runnable {
 			if(this.guards.get(j).isDead){
 				int x = this.guards.get(j).oriX;
 				int y = this.guards.get(j).oriY;
-				Guard newguard = new Guard();
+				Guard newguard = new Guard(this.game);
 				newguard.setPosition(x, y);
 				this.guards.set(j, newguard);
 			}
@@ -87,6 +69,23 @@ public class GameComponent extends JComponent implements Runnable {
 		
 		
 	}
+	
+	
+	
+	public void changeLevel(char key) throws FileNotFoundException{
+		int level = this.game.level;
+		if(key == 'u'){
+			this.game = new Game(level+1);
+		}else{	
+			this.game = new Game(level-1);
+		}
+		this.hero = game.getHero();
+		this.guards = game.getGuards();
+		this.gameFrame.addKeyListener(new LodeKeyListener(this.gameFrame, game, this));
+	}
+	
+	
+	
 	
 
 	@Override

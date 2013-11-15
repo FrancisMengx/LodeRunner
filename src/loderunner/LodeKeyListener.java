@@ -32,10 +32,10 @@ public class LodeKeyListener implements KeyListener{
 			this.hero.setDirection("down");
 			break;
 		case KeyEvent.VK_Z:
-			this.hero.dig("left", game);
+			this.hero.dig("left");
 			break;
 		case KeyEvent.VK_X:
-			this.hero.dig("right", game);
+			this.hero.dig("right");
 			break;
 		case KeyEvent.VK_U:
 			try {

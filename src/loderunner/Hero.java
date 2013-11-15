@@ -12,12 +12,13 @@ import javax.imageio.ImageIO;
 
 
 public class Hero extends Moveable implements Block{
-
 	private Graphics2D g;
 	int interval = 3;
 	Timer timer;
 	
-
+	public Hero(Game game) {
+		super(game);
+	}
 	public void drawRec(Graphics2D g) {
 		
 		this.g = g;
@@ -59,36 +60,25 @@ public class Hero extends Moveable implements Block{
 		
 	}
 	
-	public void dig(String direction, Game game){
+	public void dig(String direction){
 		if(direction == "left"){
 			game.currentLevel[this.x/25-1][this.y/25+1] = 'a';
-			Hole newhole = new Hole();
+			Hole newhole = new Hole(game);
 			newhole.setPosition((this.x/25-1)*25, (this.y/25+1)*25);
-			newhole.index = this.holes.size();
-			this.holes.add(newhole);
+			game.holes[this.x/25-1][this.y/25+1] = newhole;
 		}
 
 		if(direction == "right"){
 			game.currentLevel[this.x/25+1][this.y/25+1] = 'a';
-			Hole newhole = new Hole();
+			Hole newhole = new Hole(game);
 			newhole.setPosition((this.x/25+1)*25, (this.y/25+1)*25);
-			newhole.index = this.holes.size();
-			this.holes.add(newhole);
+			game.holes[this.x/25+1][this.y/25+1] = newhole;
 		}
-	}
-	private final int setInterval() {
-	    if (interval == 1)
-	        timer.cancel();
-	    return --interval;
 	}
 	
 	@Override
 	public void die(){
 		if(this.getBlockType("current") == 'b'){
-			for(int i = 0; i< this.holes.size(); i++){
-				Game.currentLevel[this.holes.get(i).x][this.holes.get(i).y] ='b' ;
-			}
-			this.holes = new ArrayList<Hole>();
 			this.isDead = true;
 		}
 	}

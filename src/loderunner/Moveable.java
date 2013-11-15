@@ -7,25 +7,23 @@ public abstract class Moveable {
 	public int oriX;
 	public int oriY;
 	public int x;
+	public Game game;
 	public int y;
-	public static ArrayList<Hole> holes = new ArrayList<Hole>();
 	public boolean isFilling = false;
 	public boolean isDead = false;
+	public Moveable(Game game){
+		this.game = game;
+	}
 	public void move(){
 //		System.out.println(this.getCurrentBlockType());
 		if(this.getBlockType("current") == 'a' && this.getBlockType("above") == 'k'
 				&& this.getBlockType("below") == 'b'&&(this.getBlockType("left") == 'b'| this.getBlockType("left") == 'a')
 				&& (this.getBlockType("right") == 'b'| this.getBlockType("right") == 'a')){
-			for(int i = 0; i < this.holes.size(); i++){
-				if(Math.abs(this.holes.get(i).x - this.x)<25 && Math.abs(this.holes.get(i).y - this.y)<25){
 					Game.currentLevel[this.x/25][this.y/25] = 'f';
-					FilledHole fhole = new FilledHole();
-					fhole.setPosition(this.x, this.y);
-					this.holes.set(i, fhole);
-				}
-			}
-			
-			
+					int superCount = this.game.holes[this.x/25][this.y/25].counter;
+					this.game.holes[this.x/25][this.y/25] = new FilledHole(this.game, superCount);
+					this.game.holes[this.x/25][this.y/25].setPosition((this.x/25)*25, (this.y/25)*25);
+					
 		}
 		this.checkAndDrop();
 		if(this.direction == "left"){
